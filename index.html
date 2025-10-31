@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adnan Ahmad | Creative Graphic Designer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ENHANCED COLOR PALETTE & VARIABLES */
+    :root {
+      --primary: #5b21b6; /* Deep Violet */
+      --primary-light: #7c3aed; /* Brighter Violet */
+      --secondary: #f59e0b; /* Amber/Gold */
+      --accent: #ec4899; /* Fuchsia Pink */
+      --dark: #1f2937; /* Dark Slate for soft black */
+      --light: #f9fafb; /* Off-White for background */
+      --pure-light: #fff; /* Pure White for elements */
+      --gray: #e5e7eb; /* Light Gray for section background */
+      --text: #4b5563; /* Dark Gray text */
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --strong-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    
+    /* --- FIX: REMOVING BLINKING CURSOR/OUTLINE AND ADDING ACCESSIBLE THEMED FOCUS --- */
+    input:focus, 
+    textarea:focus, 
+    button:focus,
+    .btn:focus,
+    .floating-card:focus,
+    .social a:focus {
+        outline: none; 
+        /* Themed focus ring for accessibility without the distracting blink */
+        box-shadow: 0 0 0 3px rgba(91, 33, 182, 0.4); 
+    }
+    
+    .hero-text h1, .section-title, .logo {
+        font-family: "Sora", sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: var(--light);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      padding: 15px 60px;
+      background: rgba(249, 250, 251, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Logo */
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      letter-spacing: -1px;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent; 
+    }
+
+    .logo span {
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        color: var(--dark); 
+        margin-right: 5px;
+    }
+    
+    .logo i {
+        margin-right: 8px;
+        color: var(--primary-light); 
+        font-size: 32px;
+    }
+    
+    .menu-toggle {
+        font-size: 30px;
+        color: var(--primary);
+        cursor: pointer;
+        display: none; 
+    }
+
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: -8px;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover:after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      background: var(--primary);
+      color: var(--pure-light);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 5px 15px rgba(91, 33, 182, 0.3);
+    }
+
+    .btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(91, 33, 182, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--dark);
+      border: 2px solid var(--dark);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--dark);
+      color: var(--pure-light);
+      border-color: var(--dark);
+      box-shadow: 0 5px 15px rgba(31, 41, 55, 0.2);
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 100px 60px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+      top: -300px;
+      right: -200px;
+      z-index: -1;
+      opacity: 0.05;
+    }
+
+    .hero-text {
+      flex: 1 1 500px;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .hero-text h1 {
+      font-size: 72px;
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .hero-text strong {
+      color: var(--dark);
+      position: relative;
+    }
+
+    .hero-text strong::after {
+      content: '';
+      position: absolute;
+      width: 105%;
+      height: 15px;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      bottom: -2px;
+      left: -5px;
+      z-index: -1;
+      opacity: 0.9;
+      transform: skewX(-10deg);
+    }
+
+    .hero-buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      flex: 1 1 400px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .floating-card {
+      background: var(--pure-light);
+      /* padding: 30px; */
+      border-radius: 20px;
+      text-align: center;
+      width: 340px;
+      box-shadow: var(--strong-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.5s, box-shadow 0.5s;
+      z-index: 2;
+      border: 3px solid var(--primary-light);
+    }
+
+    .floating-card:hover {
+      transform: translateY(-15px) rotate(-1deg);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .floating-card img {
+      width: 344px;
+      height: 352px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 6px solid var(--gray);
+      /* margin-bottom: 15px; */
+      transition: transform 0.5s;
+    }
+
+    .floating-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .floating-card h2 {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .floating-card p {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    /* Floating elements (simplified for mobile, only visible on desktop) */
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .floating-element {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: var(--secondary);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    
+    .floating-element:nth-child(1) { top: 10%; left: 10%; animation: float 6s ease-in-out infinite; }
+    .floating-element:nth-child(2) { top: 60%; right: 10%; background: var(--primary); animation: float 8s ease-in-out infinite 1s; }
+    .floating-element:nth-child(3) { bottom: 20%; left: 20%; background: var(--accent); animation: float 7s ease-in-out infinite 0.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    /* Section Titles */
+    section {
+      padding: 100px 60px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 52px;
+      font-weight: 800;
+      margin-bottom: 70px;
+      color: var(--dark);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 6px;
+      background: var(--accent);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 5px;
+    }
+
+    /* About */
+    .about-section {
+        padding-top: 0;
+    }
+    
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      background: linear-gradient(145deg, var(--gray) 0%, var(--light) 100%);
+      border-radius: 40px;
+      padding: 80px 60px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, transparent 70%);
+      bottom: -150px;
+      left: -150px;
+      z-index: 0;
+      opacity: 0.1;
+    }
+
+    .about img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 8px solid var(--pure-light);
+      box-shadow: 0 0 0 5px var(--primary-light);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.5s;
+    }
+
+    .about img:hover {
+      transform: scale(1.05) rotate(3deg);
+    }
+
+    .about-text {
+      flex: 1 1 500px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-text p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .skill-tag {
+      background: var(--pure-light);
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 600;
+      color: var(--primary);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--primary-light);
+      transition: all 0.3s;
+    }
+
+    .skill-tag:hover {
+        background: var(--primary);
+        color: var(--pure-light);
+        box-shadow: 0 5px 15px rgba(91, 33, 182, 0.3);
+        transform: translateY(-3px);
+    }
+
+    /* Services - ENHANCED STYLING */
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      gap: 30px;
+    }
+
+    .service-box {
+      background: var(--pure-light);
+      padding: 40px 25px; /* Increased top/bottom padding for vertical space */
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Lighter initial shadow */
+      border: 1px solid var(--gray);
+      border-bottom: 5px solid transparent; /* New: for accent line */
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      min-height: 280px; /* Increased height for more presence */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .service-box::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 0;
+      background: var(--primary);
+      bottom: 0;
+      left: 0;
+      transition: height 0.4s;
+      z-index: -1;
+    }
+
+    .service-box:hover::before {
+      height: 100%;
+    }
+
+    .service-box:hover {
+      transform: translateY(-10px); 
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Stronger hover shadow */
+      color: var(--pure-light);
+      border-bottom: 5px solid var(--accent); /* NEW: Accent color on hover */
+      border-top-color: transparent;
+    }
+
+    .service-box:hover h3,
+    .service-box:hover p {
+      color: var(--pure-light);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .service-icon i {
+        font-size: 44px; /* INCREASED icon size for more impact */
+        color: var(--primary);
+        transition: color 0.4s;
+    }
+    
+    /* Icons from the PDF/Image */
+    .icon-logo i { color: #f59e0b; } /* Amber/Gold */
+    .icon-social i { color: #ec4899; } /* Fuchsia Pink */
+    .icon-flex i { color: #5b21b6; } /* Deep Violet */
+    .icon-flyers i { color: #10b981; } /* Emerald Green */
+    .icon-bizcard i { color: #3b82f6; } /* Blue */
+    .icon-photo i { color: #ef4444; } /* Red */
+    .icon-concept i { color: #8b5cf6; } /* Purple */
+    .icon-motion i { color: #14b8a6; } /* Teal */
+    
+    .service-box:hover .service-icon i {
+      color: var(--secondary);
+    }
+
+    .service-box h3 {
+      color: var(--dark);
+      margin-bottom: 8px;
+      font-size: 19px; /* Slightly increased font size */
+      font-weight: 700;
+      transition: color 0.4s;
+      line-height: 1.3;
+    }
+
+    .service-box p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--text);
+        margin-bottom: 0;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .portfolio-item {
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--strong-shadow);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.15) rotate(1deg);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, var(--primary), var(--dark)); 
+      padding: 30px 20px 20px;
+      color: var(--light);
+      transform: translateY(100%);
+      transition: transform 0.4s ease-out;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      transform: translateY(0);
+    }
+
+    .portfolio-overlay h3 {
+      font-size: 20px;
+      margin-bottom: 5px;
+      color: var(--secondary);
+    }
+
+    .portfolio-overlay p {
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    /* Reviews */
+    .reviews {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      padding-top: 40px;
+    }
+
+    .review-box {
+      background: var(--pure-light);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 380px;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: transform 0.3s;
+      border-left: 5px solid var(--accent);
+    }
+
+    .review-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-box::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 80px;
+      color: var(--primary);
+      opacity: 0.1;
+      font-family: serif;
+    }
+
+    .review-box p {
+      color: var(--text);
+      font-size: 17px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .review-box span {
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .stars {
+      color: var(--secondary);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      background: var(--gray);
+      border-radius: 30px;
+      padding: 60px 40px;
+    }
+
+    .contact p {
+      margin: 15px 0;
+      color: var(--dark);
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .social {
+      margin-top: 40px;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 55px;
+      height: 55px;
+      background: var(--dark);
+      color: var(--secondary);
+      text-decoration: none;
+      border-radius: 15px; 
+      margin: 0 10px;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      font-size: 22px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .social a:hover {
+      background: var(--primary);
+      color: var(--pure-light);
+      transform: translateY(-5px) rotate(3deg) scale(1.05); 
+      box-shadow: 0 10px 30px rgba(91, 33, 182, 0.5), 0 0 0 4px var(--secondary);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--light);
+      text-align: center;
+      padding: 30px;
+      font-size: 15px;
+    }
+
+    /* Back to top */
+    .back-to-top {
+      background: var(--accent);
+      box-shadow: 0 5px 15px rgba(236, 72, 153, 0.5);
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--pure-light);
+      cursor: pointer;
+      font-size: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 999;
+    }
+    
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* --- RESPONSIVE DESIGN FOR TABLETS/MOBILES --- */
+    
+    @media (max-width: 1100px) {
+        .hero-text h1 {
+            font-size: 60px;
+        }
+        /* Switch services to 3 columns on larger tablets */
+        .services-container { 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+        }
+    }
+
+    @media (max-width: 900px) {
+        /* HEADER: Mobile Menu Configuration */
+        header {
+            padding: 15px 30px;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+
+        .hire-btn { /* Hide the desktop Hire Me button */
+            display: none;
+        }
+
+        .menu-toggle { /* Show the hamburger menu */
+            display: block; 
+        }
+
+        /* Mobile Navigation Overlay */
+        #mobileNav {
+            position: absolute;
+            top: 75px; 
+            left: 0;
+            width: 100%;
+            background: var(--dark); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+            max-height: 0;
+            opacity: 0;
+        }
+
+        #mobileNav.active {
+            max-height: 350px; 
+            opacity: 1;
+        }
+
+        #mobileNav ul {
+            flex-direction: column;
+            gap: 0;
+            padding: 10px 0;
+        }
+
+        #mobileNav li {
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #mobileNav li:last-child {
+            border-bottom: none;
+        }
+
+        #mobileNav a {
+            color: var(--light);
+            display: block;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #mobileNav a:hover {
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        #mobileNav a:after { 
+            display: none;
+        }
+        
+        /* HERO: Reverse stacking for mobile-first visual impact */
+        .hero {
+            padding: 80px 30px 50px 30px;
+            flex-direction: column-reverse; 
+            text-align: center;
+        }
+        
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin-top: 30px;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+        }
+
+        .hero-image {
+            margin-bottom: 40px;
+        }
+        
+        .floating-card {
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .floating-elements { /* Hide floating elements on mobile */
+            display: none;
+        }
+        
+        .hero-buttons {
+            justify-content: center;
+        }
+        
+        /* GENERAL SECTIONS */
+        section {
+            padding: 60px 30px;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            margin-bottom: 50px;
+        }
+
+        /* ABOUT: Stacking and centered */
+        .about {
+            flex-direction: column;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .about img {
+            margin-bottom: 30px;
+            width: 250px;
+            height: 250px;
+            /* Adjusting border for a better pop */
+            border: 6px solid var(--pure-light);
+            box-shadow: 0 0 0 4px var(--accent);
+        }
+        
+        .skills {
+            justify-content: center;
+        }
+        
+        /* GRIDS: Single column for stacking on phones, 2 columns on tablets */
+        .services-container {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+        
+        .portfolio-grid {
+             grid-template-columns: 1fr;
+        }
+        
+        .service-box {
+            padding: 30px 20px;
+            min-height: 250px; /* Adjusted min-height for mobile space */
+        }
+        
+        .review-box {
+            max-width: 100%;
+        }
+    }
+
+    /* SMALLER PHONES (600px and below) */
+    @media (max-width: 600px) {
+        .logo {
+            font-size: 24px;
+        }
+        .logo i {
+            font-size: 28px;
+        }
+        
+        .hero-text h1 {
+            font-size: 36px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-text strong::after {
+            height: 10px;
+        }
+        
+        .contact p {
+            font-size: 16px;
+        }
+        
+        .social a {
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            margin: 0 5px;
+        }
+        
+        .services-container { 
+            grid-template-columns: 1fr; /* Single column stack for small phones */
+        }
+        
+        .service-icon i {
+            font-size: 38px; /* Slightly smaller icon on smallest screens */
+        }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="logo"><i class="fas fa-palette"></i><span>CREATIVE</span> GRAPHICS</div>
+    <i class="fas fa-bars menu-toggle" id="menuToggle"></i> 
+    <nav id="mobileNav">
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://wa.me/923315401856?text=Hey%20Adnan%2C%20your%20work%20looks%20amazing!%20Are%20you%20available%20for%20a%20project%3F" class="btn hire-btn-mobile"><i class="fab fa-whatsapp"></i> Hire Me</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <section id="hero" class="hero">
+    <div class="hero-text fade-in">
+      <p>Hi, I'm</p>
+      <h1>Adnan Ahmad.</h1>
+      <p>I help local businesses in getting <strong>Graphics Designer</strong> solutions that grow their brand and audience.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/923315401856?text=Hey%20Adnan%2C%20your%20work%20looks%20amazing!%20Are%20you%20available%20for%20a%20project%3F"><button class="btn"><i class="fab fa-whatsapp"></i> Hire Me</button></a>
+        <a href="#portfolio"><button class="btn btn-outline"><i class="fas fa-folder-open"></i> Portfolio</button></a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="floating-card fade-in" tabindex="0">
+        <img src="./imgs/img1.jpg" alt="Adnan Ahmad">
+        <!-- <h2>Adnan Ahmad</h2>
+        <p>GRAPHIC DESIGNER</p> -->
+      </div>
+      <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <h2 class="section-title">About Me</h2>
+    <div class="about">
+      <img src="./imgs/img5.jpg" alt="About Image" />
+      <div class="about-text">
+        <p>
+          I'm a passionate graphic designer with a creative eye and attention to detail. 
+          I specialize in branding, logo design, and social media visuals that capture attention 
+          and communicate your message effectively. 
+        </p>
+        <p>
+          My mission is to help businesses grow visually and make a lasting impression.
+          With over 5 years of experience, I've worked with clients across various industries
+          to create compelling visual identities that stand out in competitive markets.
+        </p>
+        <div class="skills">
+          <div class="skill-tag">Logo Design</div>
+          <div class="skill-tag">Brand Identity</div>
+          <div class="skill-tag">Social Media Graphics</div>
+          <div class="skill-tag">Print Design</div>
+          <div class="skill-tag">UI/UX Design</div>
+          <div class="skill-tag">Illustration</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title">What I Specialize In</h2>
+    <div class="services-container">
+      
+      <div class="service-box">
+        <div class="service-icon icon-logo"><i class="fas fa-crown"></i></div>
+        <h3>Logo Design & Branding</h3>
+        <p>Crafting unique brand identities that tell your story and make your business unforgettable.</p>
+      </div>
+
+      <div class="service-box">
+        <div class="service-icon icon-social"><i class="fas fa-mobile-alt"></i></div>
+        <h3>Social Media Post Designs</h3>
+        <p>Eye-catching visuals that boost engagement and elevate your online presence.</p>
+      </div>
+      
+      <div class="service-box">
+        <div class="service-icon icon-flex"><i class="fas fa-ad"></i></div>
+        <h3>Flexes, Banners & Billboards</h3>
+        <p>Professional large-format designs for events, promotions, and advertising.</p>
+      </div>
+
+      <div class="service-box">
+        <div class="service-icon icon-flyers"><i class="fas fa-copy"></i></div>
+        <h3>Flyers, Brochures & Posters</h3>
+        <p>Creative layouts that capture attention and deliver your message clearly.</p>
+      </div>
+      
+      <div class="service-box">
+        <div class="service-icon icon-bizcard"><i class="fas fa-id-card"></i></div>
+        <h3>Business Cards & Stationery Design</h3>
+        <p>Elegant and cohesive designs for your brand's professional image.</p>
+      </div>
+      
+      <div class="service-box">
+        <div class="service-icon icon-photo"><i class="fas fa-camera"></i></div>
+        <h3>Photo Editing & Retouching</h3>
+        <p>Enhancing images with precision and artistic touch.</p>
+      </div>
+      
+      <!-- <div class="service-box">
+        <div class="service-icon icon-concept"><i class="fas fa-lightbulb"></i></div>
+        <h3>Creative Concept Development</h3>
+        <p>Turning ideas into strong visual campaigns and brand strategies.</p>
+      </div>
+
+      <div class="service-box">
+        <div class="service-icon icon-motion"><i class="fas fa-film"></i></div>
+        <h3>Motion Graphics & Video Thumbnails</h3>
+        <p>Adding movement and style for digital marketing and YouTube content.</p>
+      </div> -->
+
+    </div>
+  </section>
+
+ <section id="portfolio">
+    <h2 class="section-title">Portfolio</h2>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-item">
+        <img src="./portfolio/dataentry.jpg" alt="Data Entry Services Project">
+        <div class="portfolio-overlay">
+          <h3>Data Entry Services</h3>
+          <p>Fast, accurate, secure data processing.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="./portfolio/cvmaker.jpg" alt="Professional CV Services Project">
+        <div class="portfolio-overlay">
+          <h3>Professional CV Services</h3>
+          <p>Modern, ATS-friendly resumes for jobs.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="./portfolio/socialmediapost.jpg" alt="Social Media Post Design">
+        <div class="portfolio-overlay">
+          <h3>Social Media Post</h3>
+          <p>Engaging visuals for strong online presence.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="./portfolio/thumbnail.jpg" alt="Social Banner Post Design">
+        <div class="portfolio-overlay">
+          <h3>Social Banner Post</h3>
+          <p>Branded banners capture attention instantly.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="./portfolio/flexdesign.jpg" alt="Social Flex Design Project">
+        <div class="portfolio-overlay">
+          <h3>Social Flex Design</h3>
+          <p>Vibrant, professional designs for promotion.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="./portfolio/amazon.jpg" alt="Social Amazon Design Project">
+        <div class="portfolio-overlay">
+          <h3>Social Amazon Design</h3>
+          <p>Designs boost Amazon sales, presence.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="./portfolio/watches.jpg" alt="Logo Design Watch Brand">
+        <div class="portfolio-overlay">
+          <h3>Logo Design</h3>
+          <p>Unique logo reflects your brand.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="./portfolio/webdeveloper.jpg" alt="Logo Design Web Developer">
+        <div class="portfolio-overlay">
+          <h3>Logo Design</h3>
+          <p>Unique logo reflects your brand.</p>
+        </div>
+      </div>
+
+    </div>
+</section>
+
+  <section id="reviews">
+    <h2 class="section-title">Client Reviews</h2>
+    <div class="reviews">
+      <div class="review-box">
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>"I'm truly impressed with the beautiful logo design! It perfectly matches my vision and reflects the brand's personality."</p>
+        <span>- Salman Ullah, Website Designer</span>
+      </div>
+      <div class="review-box">
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>"Delivered designs exactly as I wanted. Highly recommended! Will definitely work with again."</p>
+        <span>- Sarah L.</span>
+      </div>
+      <div class="review-box">
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>"My go-to designer for all my branding projects. Always delivers on time with exceptional quality."</p>
+        <span>- Ahmed R.</span>
+      </div>
+    </div>
+  </section>
+
+   <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact">
+      <p><i class="fas fa-envelope"></i> Email: adnanahmad.ubl@gmail.com</p>
+      <p><i class="fas fa-phone"></i> Phone: +92331 5401856</p>
+      <div class="social">
+        <a href="https://www.facebook.com/share/1CaPGzjG7a/
+" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/creative-graphics-463205337?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
+" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a
+          href="https://wa.me/923315401856?text=Hey%20Adnan%2C%20your%20work%20looks%20amazing!%20Are%20you%20available%20for%20a%20project%3F" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Creative Graphics | Designed by Adnan Ahmad
+  </footer>
+
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Back to top button
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    });
+
+    backToTopButton.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    menuToggle.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        // Change icon from bars to close
+        this.classList.toggle('fa-bars');
+        this.classList.toggle('fa-times');
+    });
+
+    // Smooth scrolling for navigation links and closing menu
+    document.querySelectorAll('#mobileNav a, nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if(targetElement) { // Only scroll if target exists
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Close mobile menu if open
+        if(window.innerWidth <= 900) {
+            mobileNav.classList.remove('active');
+            menuToggle.classList.add('fa-bars');
+            menuToggle.classList.remove('fa-times');
+        }
+      });
+    });
+
+    // Fade in animation on scroll (simplified/fixed for all sections)
+    const fadeElements = document.querySelectorAll('.fade-in, .service-box, .portfolio-item, .review-box, .about');
+    
+    const fadeInOnScroll = function() {
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 100; 
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('fade-in');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', fadeInOnScroll);
+    // Initial check
+    fadeInOnScroll();
+  </script>
+</body>
+</html>
